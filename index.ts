@@ -5,7 +5,7 @@ const port: number | undefined | string = process.env.PORT! || 33900;
 const app: Application = express();
 
 const server = app.listen(process.env.PORT! || port, () => {
-  console.log("Server is acive");
+  console.log("Server is active");
 });
 
 process.on("uncaughtException", (error: Error) => {
