@@ -6,7 +6,7 @@ import { NextFunction } from "connect";
 import { mainError } from "./error/rootError";
 import { HTTP, errorHandler } from "./utils/interface";
 
-export const appConfig = (app: Application) => {
+export const main = (app: Application) => {
   app.use(json());
   app.use(cors());
   app.use(helmet());
