@@ -11,6 +11,7 @@ export const errorHandler = (
 ) => {
   errorBuilder(err, req, res);
 };
+
 export interface iError {
   name: string;
   message: string;
