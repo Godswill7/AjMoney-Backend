@@ -1,3 +1,5 @@
 node_modules
 # .env
-User
+# User
+.gitignore
+getIp.ts

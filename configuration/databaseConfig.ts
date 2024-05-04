@@ -1,12 +1,11 @@
 import { connect } from "mongoose";
-import env from "dotenv"
-env.config()
+import env from "dotenv";
+env.config();
 
 const url: string | undefined = process.env.DATABASE_URL!;
 
 export const databaseConfig = async () => {
-    try {
-      
+  try {
     await connect(url).then(() => {
       console.log("Database is working !!!");
     });

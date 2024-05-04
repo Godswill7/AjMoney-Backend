@@ -28,10 +28,12 @@ export enum HTTP {
   CONFILT = 409,
 }
 
-interface user{
-  name: string,
-  password: string,
-  history: string,  
+interface user {
+  name: string;
+  email:string,
+  password: string;
+  history: string;
+  balance: number;
 }
 
 export interface userInfo extends user, Document { };

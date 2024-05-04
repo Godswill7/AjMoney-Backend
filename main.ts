@@ -13,12 +13,25 @@ export const main = (app: Application) => {
   app.use(helmet());
   app.use(morgan("dev"));
 
-  // app.use("/",user)
+  app.use("/api", user)
+  
+
 
   app.get("/", (req: Request, res: Response) => {
-    try {
+
+    // const ip:string | undefined = req.ip;
+    // const userAgent: string | undefined = req.headers["user-agent"];
+
+    // console.log(req.rawHeaders.splice(10,1))
+    
+    // const getOS: string[] = req.rawHeaders.splice(11, 1);
+
+    try { 
       return res.status(HTTP.OK).json({
         message: "AJ Money Api is ready",
+        // ip,
+        // getOS
+        // userAgent
       });
     } catch (error: Error | any) {
       return res.status(HTTP.BAD_REQUEST).json({
