@@ -5,12 +5,15 @@ import morgan from "morgan";
 import { NextFunction } from "connect";
 import { mainError } from "./error/rootError";
 import { HTTP, errorHandler } from "./utils/interface";
+import user from "./User/userRouter"
 
 export const main = (app: Application) => {
   app.use(json());
   app.use(cors());
   app.use(helmet());
   app.use(morgan("dev"));
+
+  // app.use("/",user)
 
   app.get("/", (req: Request, res: Response) => {
     try {

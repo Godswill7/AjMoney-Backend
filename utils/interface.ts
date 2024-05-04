@@ -2,6 +2,7 @@ import { NextFunction } from "express";
 import { Request, Response } from "express";
 import { mainError } from "../error/rootError";
 import errorBuilder from "../error/errorHandler";
+import { Document } from "mongoose";
 
 export const errorHandler = (
   err: mainError,
@@ -26,3 +27,11 @@ export enum HTTP {
   NOT_FOUND,
   CONFILT = 409,
 }
+
+interface user{
+  name: string,
+  password: string,
+  history: string,  
+}
+
+export interface userInfo extends user, Document { };
