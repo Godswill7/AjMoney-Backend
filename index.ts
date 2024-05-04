@@ -10,7 +10,6 @@ main(app);
 
 const server = app.listen(process.env.PORT! || port, () => {
   console.log()
-  // console.log("Server is active");
   databaseConfig()
 });
 

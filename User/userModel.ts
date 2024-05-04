@@ -24,7 +24,8 @@ const userSchemas = new Schema<userInfo>(
     history: [
       {
         type: Types.ObjectId,
-        ref: "history",
+        ref: 'history',
+        default:[]
       },
     ],
   },

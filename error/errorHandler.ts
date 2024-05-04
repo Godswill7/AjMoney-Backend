@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { HTTP } from "../utils/interface";
 import { mainError } from "./rootError";
 
-const errorBuilder = (err: mainError, req: Request, res: Response) => {
+const errorBuilder = (err: mainError, res: Response) => {
   res.status(HTTP.BAD_REQUEST).json({
     name: err.name,
     message: err.message,

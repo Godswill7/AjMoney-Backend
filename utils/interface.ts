@@ -10,7 +10,7 @@ export const errorHandler = (
   res: Response,
   next: NextFunction
 ) => {
-  errorBuilder(err, req, res);
+  errorBuilder(err, res);
 };
 
 export interface iError {
@@ -23,17 +23,27 @@ export interface iError {
 export enum HTTP {
   OK = 200,
   CREATED = 201,
-  BAD_REQUEST = 404,
-  NOT_FOUND,
-  CONFILT = 409,
+  BAD_REQUEST = 400,
+  NOT_FOUND = 404,
+  CONFLICT = 409,
+}
+interface Transaction {
+  amount: number;
+  description?: string;
+  timestamp: Date;
+  senderID: string;
+  receiverID: string;
+  type: "debit" | "credit";
 }
 
-interface user {
+interface User {
   name: string;
-  email:string,
+  email: string;
   password: string;
-  history: string;
+  history: Transaction[];
   balance: number;
+
 }
 
-export interface userInfo extends user, Document { };
+export interface userInfo extends User, Document { };
+export interface transactionInfo extends Transaction, Document { };

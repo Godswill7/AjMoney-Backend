@@ -17,16 +17,19 @@ export const main = (app: Application) => {
   
 
 
-  app.get("/", (req: Request, res: Response) => {
-
+  app.get("/", async (req: Request, res: Response, next: NextFunction) => {
     // const ip:string | undefined = req.ip;
     // const userAgent: string | undefined = req.headers["user-agent"];
 
     // console.log(req.rawHeaders.splice(10,1))
-    
+
     // const getOS: string[] = req.rawHeaders.splice(11, 1);
 
-    try { 
+    // const ip = req.ip || req.connection.remoteAddress;
+    // console.log("Client IP:", ip);
+    // next();
+
+    try {
       return res.status(HTTP.OK).json({
         message: "AJ Money Api is ready",
         // ip,
@@ -36,19 +39,19 @@ export const main = (app: Application) => {
     } catch (error: Error | any) {
       return res.status(HTTP.BAD_REQUEST).json({
         message: "ErrorAcessing API route",
-          data: error.message,
+        data: error.message,
       });
     }
   });
 
-  app
-    .all("*", (req: Request, res: Response, next: NextFunction) => {
-      new mainError({
+  app.all("*", (req: Request, res: Response, next: NextFunction) => {
+     const error =  new mainError({
         name: `This is an API Route Error`,
         status: HTTP.BAD_REQUEST,
         success: false,
         message: `This is happening as a result of invalid route being this: ${req.originalUrl}`,
-      });
+     });
+    next(error)
     })
     .use(errorHandler);
 };
