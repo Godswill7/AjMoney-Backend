@@ -21,6 +21,6 @@ process.on("unhandledRejection", (reason: Error | any) => {
   console.log(`unhandledRejection: ${reason}`);
 });
 
-process.on("end", () => {
+process.on("end", () => { 
   server.close();
 });

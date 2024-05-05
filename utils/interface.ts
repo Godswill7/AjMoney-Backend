@@ -26,23 +26,35 @@ export enum HTTP {
   BAD_REQUEST = 400,
   NOT_FOUND = 404,
   CONFLICT = 409,
+  SERVER_ERROR = 500
 }
+// interface Transaction {
+//   amount: number;
+//   description?: string;
+//   timestamp: Date;
+//   senderID: string;
+//   receiverID: string;
+//   type: "debit" | "credit";
+// }
 interface Transaction {
-  amount: number;
-  description?: string;
-  timestamp: Date;
-  senderID: string;
-  receiverID: string;
-  type: "debit" | "credit";
+  authorization_url: string;
+  access_code: string;
+  reference: string;
 }
+
+// interface Paystack {
+//   authorization_url: string;
+//   access_code: string;
+//   reference: string;
+// }
 
 interface User {
   name: string;
   email: string;
+  paystack_ref:string;
   password: string;
   history: Transaction[];
   balance: number;
-
 }
 
 export interface userInfo extends User, Document { };

@@ -38,7 +38,7 @@ export const main = (app: Application) => {
       });
     } catch (error: Error | any) {
       return res.status(HTTP.BAD_REQUEST).json({
-        message: "ErrorAcessing API route",
+        message: "Error Acessing AJ MONEY API",
         data: error.message,
       });
     }
@@ -52,6 +52,8 @@ export const main = (app: Application) => {
         message: `This is happening as a result of invalid route being this: ${req.originalUrl}`,
      });
     next(error)
+
+    console.log(error.message)
     })
     .use(errorHandler);
 };

@@ -10,12 +10,15 @@ const userSchemas = new Schema<userInfo>(
     email: {
       type: String,
       required: true,
-      unique:true,
+      unique: true,
       match: [/^\S+@\S+\.\S+$/, "Invalid email address"],
     },
     password: {
       type: String,
       required: true,
+    },
+    paystack_ref: {
+      type: String,
     },
     balance: {
       type: Number,
@@ -23,9 +26,15 @@ const userSchemas = new Schema<userInfo>(
     },
     history: [
       {
-        type: Types.ObjectId,
-        ref: 'history',
-        default:[]
+        type: [
+          {
+            authorization_url: String,
+            access_code: String,
+            reference: String,
+          },
+        ],
+        ref: "history",
+        default: [],
       },
     ],
   },
@@ -34,4 +43,6 @@ const userSchemas = new Schema<userInfo>(
   }
 );
 
-export default model<userInfo>("userDatas", userSchemas);
+const User = model<userInfo>("userDatas", userSchemas);
+
+export default User;

@@ -11,5 +11,6 @@ export const databaseConfig = async () => {
     });
   } catch (error: Error | any) {
     console.log("Databse connection has not been established.", error);
+    process.exit(1);
   }
 };

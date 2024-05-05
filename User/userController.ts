@@ -4,6 +4,7 @@ import userModel from "./userModel";
 import { compare, hash } from "bcrypt";
 import { sign } from "jsonwebtoken";
 import env from "dotenv";
+import User from "./userModel";
 env.config();
 
 export const userRegistration = async (req: Request, res: Response) => {
@@ -12,7 +13,7 @@ export const userRegistration = async (req: Request, res: Response) => {
 
     const encrypt = await hash(password, 10);
 
-    const createUser = await userModel.create({
+    const createUser = await User.create({
       name,
       email,
       password: encrypt,
@@ -41,7 +42,7 @@ export const signInUser = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
 
-    const findUser = await userModel.findOne({ email });
+    const findUser = await User.findOne({ email });
 
     if (!findUser) {
       return res.status(HTTP.NOT_FOUND).json({
@@ -84,7 +85,7 @@ export const signInUser = async (req: Request, res: Response) => {
 
 export const getAllUsers = async (req: Request, res: Response) => {
   try {
-    const result = await userModel.find();
+    const result = await User.find();
 
     return res.status(HTTP.OK).json({
       message: "All users gotten",
@@ -104,7 +105,7 @@ export const getOneUser = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
-    const getOneUser = await userModel.findById(id);
+    const getOneUser = await User.findById(id);
 
     return res.status(HTTP.OK).json({
       message: "User gotten successfully",
@@ -124,7 +125,7 @@ export const deletetUser = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
-    await userModel.deleteOne({ id });
+    await User.deleteOne({ id });
 
     return res.status(HTTP.OK).json({
       message: "User Deleted successful",
